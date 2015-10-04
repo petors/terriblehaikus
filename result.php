@@ -12,6 +12,7 @@ function count_numbers($num){
 			$sum += 1;
 		}
 	}
+	return $sum;
 }
 
 // HAIKU GENERATOR
@@ -52,11 +53,21 @@ function fill_a_line($parts, $syl){
 	return $new_line;
 }
 
+if (isset($_REQUEST['seed'])){
+	srand($_REQUEST['seed']);
+}else{
+	$seed = rand();
+	header("Location: ./result.php?subject={$subject}&num={$value}&seed={$seed}");
+	// srand(rand());
+}
+
 if(!isset($_REQUEST['num'])){
 	echo "why you do this";
 }else{
 	$subject = $_REQUEST['subject'];
 	$num = $_REQUEST['num'];
+
+	$somenumberlist = array();
 
 	$link = "http://www.ucalendar.uwaterloo.ca/1516/COURSE/course-" . $subject . ".html";
 
@@ -67,6 +78,10 @@ if(!isset($_REQUEST['num'])){
 	while(!feof($fp)){
 		$line = preg_replace("/[^a-zA-Z 0-9]+/", "", fgetss($fp));
 		$parts = explode(' ', $line);
+
+		if ((count($parts) > 1) && is_numeric($parts[1])){
+			$somenumberlist[] = $parts[1];
+		}
 
 		if ((count($parts) > 1) && ($parts[1] == $num) && ($parts[0] == $subject)){
 			// var_dump($parts);
@@ -99,12 +114,17 @@ if(!isset($_REQUEST['num'])){
 			break;
 		}
 	}
-	var_dump($parts);
-	if (empty($parts)){
-		echo "<a href='../'>NO COURSES</a>";
-	}
 	fclose($fp);
 	
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
+	if ($parts[0] == ""){
+		echo "<a href='.'>INVALID COURSE DID U MEAN: </a>";
+		foreach ($somenumberlist as $key => $value) {
+			echo "<br /><a href='./result.php?subject={$subject}&num={$value}'>{$subject} {$value}</a>";
+		}
+	}else{
+		echo "<h1>{$subject} {$num}</h1>";
+		echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
+		echo "<a href='./result.php?subject={$subject}&num={$num}'>Generate More</a>";
+	}
 }
 ?>
