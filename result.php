@@ -106,14 +106,5 @@ if(!isset($_REQUEST['num'])){
 	fclose($fp);
 	
 	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-	echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
 }
 ?>
