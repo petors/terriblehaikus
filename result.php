@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
+
 if(!isset($_REQUEST['num'])){
 	echo "why you do this";
 }else{
@@ -57,13 +61,24 @@ if(!isset($_REQUEST['num'])){
 		preg_match_all('/[aeiouy]{1,2}/',$str,$matches);
 		var_dump($matches);
 		return count($matches[0]);
+	}
 		
-		function fill_a_line($syl){
-			$total_syl = 0;
-			while($total_syl <= $syl){
-				count_syl($parts[rand(0, count($parts))]);
+	function fill_a_line($syl){
+		$total_syl = 0;
+		$new_line = "";
+
+		while(true){
+			$test_word = $parts[rand(0, count($parts))];
+			if (count_syl($test_word) + $total_Syl <= $syl){
+				$new_line .= $test_word;
+				$total_Syl += count_syl($test_word);
+			}
+			if ($total_Syl >= $syl){
+				break;
 			}
 		}
+		return $new_line;
 	}
+	echo "<pre>" . fill_a_line(5) . "/n" . fill_a_line(7) . "/n" . fill_a_line(5) . "</pre>"
 }
 ?>
