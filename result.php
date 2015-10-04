@@ -42,28 +42,29 @@ function fill_a_line($parts, $syl){
 
 	while(true){
 		$test_word = $parts[rand(0, count($parts)-1)];
-		if (count_syl($test_word) + $total_Syl <= $syl){
-			$new_line .= $test_word /*. "[" . count_syl($test_word). "]" /**/ .  " ";
-			$total_Syl += count_syl($test_word);
-		}
-		if ($total_Syl >= $syl){
-			break;
+		if ($test_word){
+			if (count_syl($test_word) + $total_Syl <= $syl){
+				$new_line .= $test_word /*. "[" . count_syl($test_word). "]" /**/ .  " ";
+				$total_Syl += count_syl($test_word);
+			}
+			if ($total_Syl >= $syl){
+				break;
+			}
 		}
 	}
 	return $new_line;
 }
 
-if (isset($_REQUEST['seed'])){
-	srand($_REQUEST['seed']);
-}else{
-	$seed = rand();
-	header("Location: ./result.php?subject={$subject}&num={$value}&seed={$seed}");
-	// srand(rand());
-}
-
-if(!isset($_REQUEST['num'])){
+if(!isset($_REQUEST['subject'])){
 	echo "why you do this";
 }else{
+	if (isset($_REQUEST['seed'])){
+		srand($_REQUEST['seed']);
+	}else{
+		$seed = rand();
+		header("Location: ./result.php?subject=" . $_REQUEST['subject'] . "&num=" . $_REQUEST['num'] . "&seed={$seed}");
+		// srand(rand());
+	}
 	$subject = $_REQUEST['subject'];
 	$num = $_REQUEST['num'];
 
@@ -115,16 +116,55 @@ if(!isset($_REQUEST['num'])){
 		}
 	}
 	fclose($fp);
-	
+?>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="main">
+<div class="content">
+<?php
 	if ($parts[0] == ""){
-		echo "<a href='.'>INVALID COURSE DID U MEAN: </a>";
+?>
+		<div class="spacer">
+			<h1>INVALID COURSE DID U MEAN: </h1>
+		</div>
+<?php
 		foreach ($somenumberlist as $key => $value) {
 			echo "<br /><a href='./result.php?subject={$subject}&num={$value}'>{$subject} {$value}</a>";
 		}
 	}else{
-		echo "<h1>{$subject} {$num}</h1>";
-		echo "<pre>" . fill_a_line($parts, 5) . "\n" . fill_a_line($parts, 7) . "\n" . fill_a_line($parts, 5) . "</pre>";
-		echo "<a href='./result.php?subject={$subject}&num={$num}'>Generate More</a>";
+?>
+		<div class="spacer">
+			<h1><?php echo $subject . " " . $num?>:</h1>
+		</div>
+<?php
+		$line1 = fill_a_line($parts, 5);
+		$line2 = fill_a_line($parts, 7);
+		$line3 = fill_a_line($parts, 5);
+		echo "<p>" . $line1 . "</p>";
+		echo "<p>" . $line2 . "</p>";
+		echo "<p>" . $line3 . "</p>";
+
+		$text = $line1 . "\n" . $line2 . "\n" . $line3 . "\n";
+
+		echo "<a href='https://twitter.com/intent/tweet?url=" . urlencode("http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']) . 
+		"&text=" . urlencode($text) . 
+		"&hashtags=terriblehacks,terriblehaiku" . 
+		"&via=terrible_haiku" . 
+		"'>Tweet This</a><br />";
+		echo "<a href='./result.php?subject={$subject}&num={$num}'>Generate More</a><br />";
+		echo "<a href='./'>Choose A Different Subject</a>";
 	}
 }
 ?>
+</div>
+</div>
+</body>
+</html>
+
+url
+via
+text
+hashtags

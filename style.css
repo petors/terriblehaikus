@@ -3,8 +3,11 @@
 body {
   margin: 0;
   background-color: #000;
-  font-family: 'Poiret One', sans;
+  font-family: 'Comic Sans MS', sans;
+  font-size:36px;
 }
+
+html {overflow-x:hidden;}
 
 #main {
   -webkit-animation-name: fadeIn;
@@ -14,8 +17,8 @@ body {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   text-align: center;
-  background: -webkit-linear-gradient(rgba(18, 57, 75, 0.86) 0%, rgba(63, 46, 104, 0.8) 78%), url(http://www.davepagurek.com/content/images/2015/3/IMG_20150321_140343.jpg);
-  background: linear-gradient(rgba(18, 57, 75, 0.86) 0%, rgba(63, 46, 104, 0.8) 78%), url(http://www.davepagurek.com/content/images/2015/3/IMG_20150321_140343.jpg);
+  background: -webkit-linear-gradient(rgba(18, 57, 75, 0.86) 0%, rgba(63, 46, 104, 0.8) 78%), url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/1023px-The_Earth_seen_from_Apollo_17.jpg);
+  background: linear-gradient(rgba(18, 57, 75, 0.86) 0%, rgba(63, 46, 104, 0.8) 78%), url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/1023px-The_Earth_seen_from_Apollo_17.jpg);
   background-position: center;
   background-size: cover;
   color: #FFF;
@@ -33,15 +36,15 @@ body {
   margin-top:0;
   margin-bottom:0;
   left:50%;
-  margin-left:-150px;
-  width:300px;
+  margin-left:-500px;
+  width: 1000px;
   text-align:center;
   transition: all ease 0.4s;
 }
 .spacer h1:hover {
-  -webkit-transform: scale(5, 2) rotate(600deg);
-  -ms-transform: scale(5, 2) rotate(600deg);
-  transform: scale(5, 2) rotate(600deg);
+  -webkit-transform: scale(2.5, 1.2) rotate(-900deg);
+  -ms-transform: scale(2.5, 1.2) rotate(-900deg);
+  transform: scale(2.5, 1.2) rotate(-900deg);
 }
 
 a.button {
@@ -59,13 +62,13 @@ a.button {
 p {
   max-width: 500px;
   margin: 20px auto;
-  font-size:18px;
+  font-size:36px;
 }
 
 .content {
   box-sizing: border-box;
   min-height: 100vh;
-  padding: 50px;
+  padding: 64px;
 }
 /*.content:hover {*/
 /*font-family: 'Henny Penny', cursive;*/
@@ -81,7 +84,7 @@ p {
 /*}*/
 
 h1 {
-  font-size: 50px;
+  font-size: 96px;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
